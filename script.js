@@ -116,10 +116,13 @@ shuffledImages.forEach((imageIndex) => {
 });
 
 // Match logic
-let flippedCards = [];
+let matchedPairs = 0; // Track the number of matched pairs
+const totalPairs = uniqueImageCount; // Total number of pairs required to complete the game
+
 function checkMatch(card) {
   gameBoard.classList.add("disabled");
   flippedCards.push(card);
+
   if (flippedCards.length === 2) {
     const [firstCard, secondCard] = flippedCards;
 
@@ -128,6 +131,16 @@ function checkMatch(card) {
 
     if (firstImage === secondImage) {
       console.log("Match found!");
+      matchedPairs++;
+
+      // Check if all pairs are matched
+      if (matchedPairs === totalPairs) {
+        console.log("Board completed! 🎉");
+        setTimeout(() => {
+          alert("Congratulations! You've completed the game!");
+        }, 500);
+      }
+
       gameBoard.classList.remove("disabled");
       flippedCards = []; // Reset flipped cards
     } else {
@@ -139,13 +152,13 @@ function checkMatch(card) {
         flippedCards = [];
       }, 1000); // Flip back after 1 second
     }
-  }
-  else {
+  } else {
     setTimeout(() => {
       gameBoard.classList.remove("disabled");
     }, 500);
   }
 }
+
 
 // Debugging helpers
 console.log("Selected images:", selectedImages);
