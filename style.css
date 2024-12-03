@@ -27,6 +27,10 @@
   transform: rotateY(180deg); /* Flip card when clicked */
 }
 
+.card.flipped {
+  pointer-events: none;
+}
+
 .card .front,
 .card .back {
   width: 100%;
