@@ -36,7 +36,7 @@ async function addHighscore(name, score) {
 }
 
 // Test the function
-addHighscore("Test User", 100);
+// addHighscore("Test User", 100);
 
 // Function to fetch data
 async function getHighscores() {
@@ -51,4 +51,79 @@ async function getHighscores() {
 }
 
 // Test the function
-getHighscores();
+// getHighscores();
+
+
+// Configuration
+const totalImageCount = 11; // Total number of images in the cardimages folder
+const uniqueImageCount = 8; // Number of unique images required for the board
+const cardFolder = "cardimages/";
+const gameBoard = document.getElementById("gameBoard");
+
+// Generate an array of unique random image indices
+function getRandomImageIndices(total, needed) {
+  const indices = [];
+  while (indices.length < needed) {
+    const randIndex = Math.floor(Math.random() * total);
+    if (!indices.includes(randIndex)) {
+      indices.push(randIndex);
+    }
+  }
+  return indices;
+}
+
+// Select and shuffle images
+const selectedImages = getRandomImageIndices(totalImageCount, uniqueImageCount);
+const shuffledImages = [...selectedImages, ...selectedImages].sort(() => 0.5 - Math.random());
+
+// Render the game board
+shuffledImages.forEach((imageIndex) => {
+  const card = document.createElement("div");
+  card.classList.add("card");
+
+  const frontFace = document.createElement("img");
+  frontFace.src = `${cardFolder}${imageIndex}.jpg`;
+  frontFace.classList.add("front");
+
+  const backFace = document.createElement("div");
+  backFace.classList.add("back");
+
+  card.appendChild(frontFace);
+  card.appendChild(backFace);
+  gameBoard.appendChild(card);
+
+  // Add click listener for flipping cards
+  card.addEventListener("click", () => {
+    card.classList.toggle("flipped");
+    checkMatch(card);
+  });
+});
+
+// Match logic
+let flippedCards = [];
+function checkMatch(card) {
+  flippedCards.push(card);
+  if (flippedCards.length === 2) {
+    const [firstCard, secondCard] = flippedCards;
+
+    const firstImage = firstCard.querySelector(".front").src;
+    const secondImage = secondCard.querySelector(".front").src;
+
+    if (firstImage === secondImage) {
+      console.log("Match found!");
+      flippedCards = []; // Reset flipped cards
+    } else {
+      console.log("No match!");
+      setTimeout(() => {
+        firstCard.classList.remove("flipped");
+        secondCard.classList.remove("flipped");
+        flippedCards = [];
+      }, 1000); // Flip back after 1 second
+    }
+  }
+}
+
+// Debugging helpers
+console.log("Selected images:", selectedImages);
+console.log("Shuffled images:", shuffledImages);
+
