@@ -116,6 +116,7 @@ shuffledImages.forEach((imageIndex) => {
 });
 
 // Match logic
+let flippedCards = [];
 let matchedPairs = 0; // Track the number of matched pairs
 const totalPairs = uniqueImageCount; // Total number of pairs required to complete the game
 
