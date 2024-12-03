@@ -118,6 +118,7 @@ shuffledImages.forEach((imageIndex) => {
 // Match logic
 let flippedCards = [];
 function checkMatch(card) {
+  gameBoard.classList.add("disabled");
   flippedCards.push(card);
   if (flippedCards.length === 2) {
     const [firstCard, secondCard] = flippedCards;
@@ -127,12 +128,14 @@ function checkMatch(card) {
 
     if (firstImage === secondImage) {
       console.log("Match found!");
+      gameBoard.classList.remove("disabled");
       flippedCards = []; // Reset flipped cards
     } else {
       console.log("No match!");
       setTimeout(() => {
         firstCard.classList.remove("flipped");
         secondCard.classList.remove("flipped");
+        gameBoard.classList.remove("disabled");
         flippedCards = [];
       }, 1000); // Flip back after 1 second
     }

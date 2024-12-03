@@ -6,6 +6,10 @@
   justify-content: center;
 }
 
+#gameBoard.disabled {
+  pointer-events: none;
+}
+
 /* Card styles */
 .card {
   width: 200px;
