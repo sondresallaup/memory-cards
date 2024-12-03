@@ -122,8 +122,8 @@ function checkMatch(card) {
   if (flippedCards.length === 2) {
     const [firstCard, secondCard] = flippedCards;
 
-    const firstImage = firstCard.querySelector(".front").src;
-    const secondImage = secondCard.querySelector(".front").src;
+    const firstImage = firstCard.querySelector(".front img").src;
+    const secondImage = secondCard.querySelector(".front img").src;
 
     if (firstImage === secondImage) {
       console.log("Match found!");
