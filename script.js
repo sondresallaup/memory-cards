@@ -78,18 +78,34 @@ const shuffledImages = [...selectedImages, ...selectedImages].sort(() => 0.5 - M
 
 // Render the game board
 shuffledImages.forEach((imageIndex) => {
+  // Create the card container
   const card = document.createElement("div");
   card.classList.add("card");
 
-  const frontFace = document.createElement("img");
-  frontFace.src = `${cardFolder}${imageIndex}.jpg`;
-  frontFace.classList.add("front");
+  // Create the inner wrapper
+  const cardInner = document.createElement("div");
+  cardInner.classList.add("card-inner");
 
+  // Create the front face
+  const frontFace = document.createElement("div");
+  frontFace.classList.add("front");
+  const frontImage = document.createElement("img");
+  frontImage.src = `${cardFolder}${imageIndex}.jpg`;
+  frontImage.alt = `Card ${imageIndex}`;
+  frontFace.appendChild(frontImage);
+
+  // Create the back face
   const backFace = document.createElement("div");
   backFace.classList.add("back");
 
-  card.appendChild(frontFace);
-  card.appendChild(backFace);
+  // Append front and back to cardInner
+  cardInner.appendChild(frontFace);
+  cardInner.appendChild(backFace);
+
+  // Append cardInner to card container
+  card.appendChild(cardInner);
+
+  // Add card to the game board
   gameBoard.appendChild(card);
 
   // Add click listener for flipping cards

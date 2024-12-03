@@ -8,33 +8,39 @@
 
 /* Card styles */
 .card {
-  width: 100px;
-  height: 150px;
+  width: 200px;
+  height: 200px;
   position: relative;
-  transform: scale(1);
-  transition: transform 0.5s;
+  perspective: 1000px; /* Enable 3D perspective for flip animation */
 }
 
-.card img {
+.card-inner {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transform-style: preserve-3d; /* Preserve 3D for both sides */
+  transition: transform 0.5s ease-in-out;
+}
+
+.card.flipped .card-inner {
+  transform: rotateY(180deg); /* Flip card when clicked */
+}
+
+.card .front,
+.card .back {
   width: 100%;
   height: 100%;
   position: absolute;
   backface-visibility: hidden;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+}
+
+.card .front {
+  transform: rotateY(0deg); /* Front side facing up initially */
 }
 
 .card .back {
-  background-color: #ccc;
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  backface-visibility: hidden;
-  transform: rotateY(180deg);
-}
-
-.card.flipped .front {
-  transform: rotateY(0deg);
-}
-
-.card.flipped .back {
-  transform: rotateY(180deg);
+  background-color: #ccc; /* Style the back of the card */
+  transform: rotateY(180deg); /* Back side facing down initially */
 }
