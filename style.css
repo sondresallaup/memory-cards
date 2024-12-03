@@ -23,7 +23,7 @@
   transform: rotateY(0deg); /* Ensure no rotation initially */
 }
 
-.card.flipped .card-inner {
+.card:not(.flipped) .card-inner {
   transform: rotateY(180deg); /* Flip card when clicked */
 }
 
