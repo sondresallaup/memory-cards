@@ -216,6 +216,9 @@ async function showHighscores(gameCompleted) {
   const gameBoard = document.getElementById("gameBoard");
   gameBoard.style.filter = "blur(5px)";
 
+  const startScreen = document.getElementById("startScreen");
+  startScreen.style.filter = "blur(5px)";
+
   try {
     const querySnapshot = await getDocs(collection(db, "highscores"));
 
@@ -269,6 +272,7 @@ async function showHighscores(gameCompleted) {
       backButton.textContent = "Tilbake";
       backButton.addEventListener("click", () => {
         highscoreList.remove();
+        startScreen.style.filter = "none";
       });
   
       highscoreList.appendChild(backButton);
