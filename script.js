@@ -239,6 +239,16 @@ function setUpGame() {
       });
 
       document.body.appendChild(highscoreList);
+
+      const restartButton = document.createElement("button");
+      restartButton.classList.add("restart-button");
+      restartButton.textContent = "Start på nytt";
+      restartButton.addEventListener("click", () => {
+        highscoreList.remove();
+        setUpGame();
+      });
+
+      highscoreList.appendChild(restartButton);
     } catch (e) {
       console.error("Error retrieving documents: ", e);
     }
