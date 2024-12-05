@@ -24,15 +24,16 @@ body > .content {
 /* Card styles */
 .card {
   cursor: pointer;
-  width: 200px;
-  height: 200px;
+  width: 20vmin;
+  height: 20vmin;
   position: relative;
   perspective: 1000px; /* Enable 3D perspective for flip animation */
+  transition: box-shadow 0.2s ease-in-out;
+  border-radius: 0.8vmin;
 }
 
 .card:hover {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-  transition: box-shadow 0.2s ease-in-out;
 }
 
 .card-inner {
@@ -58,7 +59,7 @@ body > .content {
   height: 100%;
   position: absolute;
   backface-visibility: hidden;
-  border-radius: 8px;
+  border-radius: 0.8vmin;
 }
 
 .card .front {
@@ -76,7 +77,7 @@ body > .content {
   background-color: #e9ecf1; /* Style the back of the card */
   transform: rotateY(180deg); /* Back side facing down initially */
   background-image: url("/memory-cards/assets/inkrement-logo.svg");
-  background-size: 40px;
+  background-size: 5vmin;
   background-repeat: no-repeat;
   background-position: center;
 }
