@@ -187,7 +187,7 @@ function setUpGame() {
         if (matchedPairs === totalPairs) {
           console.log("Board completed! 🎉");
           setTimeout(() => {
-            alert("Congratulations! You've completed the game!");
+            gameCompleted();
             clearInterval(timer);
           }, 500);
         }
@@ -209,7 +209,56 @@ function setUpGame() {
       }, 500);
     }
   }
+  
+  async function gameCompleted() {
+    const playerName = localStorage.getItem("playerName");
+    const playerScore = time;
 
+    try {
+      const docRef = await addDoc(collection(db, "highscores"), {
+        name: playerName,
+        score: playerScore,
+        timestamp: new Date() // Optional: Add a timestamp for sorting
+      });
+      showHighscores();
+    } catch (e) {
+      console.error("Error adding document: ", e);
+    }
+  }
+
+  async function showHighscores() {
+    try {
+      const querySnapshot = await getDocs(collection(db, "highscores"));
+
+      const highscores = [];
+
+      querySnapshot.forEach((doc) => {
+        console.log(`${doc.id} =>`, doc.data());
+        highscores.push(doc.data());
+      });
+
+      // Sort highscores
+      highscores.sort((a, b) => a.score - b.score);
+
+      const highscoreList = document.createElement("div");
+      highscoreList.classList.add("highscore-list");
+
+      highscores.forEach((score, index) => {
+        const scoreItem = document.createElement("div");
+        scoreItem.classList.add("score-item");
+        scoreItem.innerHTML = `
+          <span class="position">${index + 1}</span>
+          <span class="name">${score.name}</span>
+          <span class="score">${score.score}</span>
+        `;
+        highscoreList.appendChild(scoreItem);
+      });
+
+      document.body.appendChild(highscoreList);
+    } catch (e) {
+      console.error("Error retrieving documents: ", e);
+    }
+  }
 
   // Debugging helpers
   console.log("Selected images:", selectedImages);
