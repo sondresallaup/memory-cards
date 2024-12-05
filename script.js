@@ -54,7 +54,22 @@ async function getHighscores() {
 // getHighscores();
 
 function showStartScreen() {
-  setUpGame();
+  const gameBoard = document.getElementById("gameBoard");
+  gameBoard.innerHTML = ""; // Clear the game board
+
+  const startScreen = document.getElementById("start-screen");
+  startScreen.innerHTML = `
+    <h1>Memory Card Game</h1>
+    <p>Click on the cards to find matching pairs</p>
+    <button id="startGame">Start Game</button>
+  `;
+
+  gameBoard.appendChild(startScreen);
+
+  const startButton = document.getElementById("startGame");
+  startButton.addEventListener("click", () => {
+    setUpGame();
+  });
 }
 
 showStartScreen();
@@ -65,7 +80,13 @@ function setUpGame() {
   const totalImageCount = 18; // Total number of images in the cardimages folder
   const uniqueImageCount = 8; // Number of unique images required for the board
   const cardFolder = "cardimages/";
+
+  // Clear the start screen
+  const startScreen = document.getElementById("start-screen");
+  startScreen.innerHTML = "";
+
   const gameBoard = document.getElementById("gameBoard");
+  gameBoard.innerHTML = ""; // Clear the game board
 
   // Generate an array of unique random image indices
   function getRandomImageIndices(total, needed) {
