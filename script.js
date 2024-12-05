@@ -54,114 +54,118 @@ async function getHighscores() {
 // getHighscores();
 
 
-// Configuration
-const totalImageCount = 11; // Total number of images in the cardimages folder
-const uniqueImageCount = 8; // Number of unique images required for the board
-const cardFolder = "cardimages/";
-const gameBoard = document.getElementById("gameBoard");
+function setUpGame() {
+  // Configuration
+  const totalImageCount = 11; // Total number of images in the cardimages folder
+  const uniqueImageCount = 8; // Number of unique images required for the board
+  const cardFolder = "cardimages/";
+  const gameBoard = document.getElementById("gameBoard");
 
-// Generate an array of unique random image indices
-function getRandomImageIndices(total, needed) {
-  const indices = [];
-  while (indices.length < needed) {
-    const randIndex = Math.floor(Math.random() * total);
-    if (!indices.includes(randIndex)) {
-      indices.push(randIndex);
-    }
-  }
-  return indices;
-}
-
-// Select and shuffle images
-const selectedImages = getRandomImageIndices(totalImageCount, uniqueImageCount);
-const shuffledImages = [...selectedImages, ...selectedImages].sort(() => 0.5 - Math.random());
-
-// Render the game board
-shuffledImages.forEach((imageIndex) => {
-  // Create the card container
-  const card = document.createElement("div");
-  card.classList.add("card");
-
-  // Create the inner wrapper
-  const cardInner = document.createElement("div");
-  cardInner.classList.add("card-inner");
-
-  // Create the front face
-  const frontFace = document.createElement("div");
-  frontFace.classList.add("front");
-  const frontImage = document.createElement("img");
-  frontImage.src = `${cardFolder}${imageIndex}.jpg`;
-  frontImage.alt = `Card ${imageIndex}`;
-  frontFace.appendChild(frontImage);
-
-  // Create the back face
-  const backFace = document.createElement("div");
-  backFace.classList.add("back");
-
-  // Append front and back to cardInner
-  cardInner.appendChild(frontFace);
-  cardInner.appendChild(backFace);
-
-  // Append cardInner to card container
-  card.appendChild(cardInner);
-
-  // Add card to the game board
-  gameBoard.appendChild(card);
-
-  // Add click listener for flipping cards
-  card.addEventListener("click", () => {
-    card.classList.toggle("flipped");
-    checkMatch(card);
-  });
-});
-
-// Match logic
-let flippedCards = [];
-let matchedPairs = 0; // Track the number of matched pairs
-const totalPairs = uniqueImageCount; // Total number of pairs required to complete the game
-
-function checkMatch(card) {
-  gameBoard.classList.add("disabled");
-  flippedCards.push(card);
-
-  if (flippedCards.length === 2) {
-    const [firstCard, secondCard] = flippedCards;
-
-    const firstImage = firstCard.querySelector(".front img").src;
-    const secondImage = secondCard.querySelector(".front img").src;
-
-    if (firstImage === secondImage) {
-      console.log("Match found!");
-      matchedPairs++;
-
-      // Check if all pairs are matched
-      if (matchedPairs === totalPairs) {
-        console.log("Board completed! 🎉");
-        setTimeout(() => {
-          alert("Congratulations! You've completed the game!");
-        }, 500);
+  // Generate an array of unique random image indices
+  function getRandomImageIndices(total, needed) {
+    const indices = [];
+    while (indices.length < needed) {
+      const randIndex = Math.floor(Math.random() * total);
+      if (!indices.includes(randIndex)) {
+        indices.push(randIndex);
       }
-
-      gameBoard.classList.remove("disabled");
-      flippedCards = []; // Reset flipped cards
-    } else {
-      console.log("No match!");
-      setTimeout(() => {
-        firstCard.classList.remove("flipped");
-        secondCard.classList.remove("flipped");
-        gameBoard.classList.remove("disabled");
-        flippedCards = [];
-      }, 1000); // Flip back after 1 second
     }
-  } else {
-    setTimeout(() => {
-      gameBoard.classList.remove("disabled");
-    }, 500);
+    return indices;
   }
+
+  // Select and shuffle images
+  const selectedImages = getRandomImageIndices(totalImageCount, uniqueImageCount);
+  const shuffledImages = [...selectedImages, ...selectedImages].sort(() => 0.5 - Math.random());
+
+  // Render the game board
+  shuffledImages.forEach((imageIndex) => {
+    // Create the card container
+    const card = document.createElement("div");
+    card.classList.add("card");
+
+    // Create the inner wrapper
+    const cardInner = document.createElement("div");
+    cardInner.classList.add("card-inner");
+
+    // Create the front face
+    const frontFace = document.createElement("div");
+    frontFace.classList.add("front");
+    const frontImage = document.createElement("img");
+    frontImage.src = `${cardFolder}${imageIndex}.jpg`;
+    frontImage.alt = `Card ${imageIndex}`;
+    frontFace.appendChild(frontImage);
+
+    // Create the back face
+    const backFace = document.createElement("div");
+    backFace.classList.add("back");
+
+    // Append front and back to cardInner
+    cardInner.appendChild(frontFace);
+    cardInner.appendChild(backFace);
+
+    // Append cardInner to card container
+    card.appendChild(cardInner);
+
+    // Add card to the game board
+    gameBoard.appendChild(card);
+
+    // Add click listener for flipping cards
+    card.addEventListener("click", () => {
+      card.classList.toggle("flipped");
+      checkMatch(card);
+    });
+  });
+
+  // Match logic
+  let flippedCards = [];
+  let matchedPairs = 0; // Track the number of matched pairs
+  const totalPairs = uniqueImageCount; // Total number of pairs required to complete the game
+
+  function checkMatch(card) {
+    gameBoard.classList.add("disabled");
+    flippedCards.push(card);
+
+    if (flippedCards.length === 2) {
+      const [firstCard, secondCard] = flippedCards;
+
+      const firstImage = firstCard.querySelector(".front img").src;
+      const secondImage = secondCard.querySelector(".front img").src;
+
+      if (firstImage === secondImage) {
+        console.log("Match found!");
+        matchedPairs++;
+
+        // Check if all pairs are matched
+        if (matchedPairs === totalPairs) {
+          console.log("Board completed! 🎉");
+          setTimeout(() => {
+            alert("Congratulations! You've completed the game!");
+          }, 500);
+        }
+
+        gameBoard.classList.remove("disabled");
+        flippedCards = []; // Reset flipped cards
+      } else {
+        console.log("No match!");
+        setTimeout(() => {
+          firstCard.classList.remove("flipped");
+          secondCard.classList.remove("flipped");
+          gameBoard.classList.remove("disabled");
+          flippedCards = [];
+        }, 1000); // Flip back after 1 second
+      }
+    } else {
+      setTimeout(() => {
+        gameBoard.classList.remove("disabled");
+      }, 500);
+    }
+  }
+
+
+  // Debugging helpers
+  console.log("Selected images:", selectedImages);
+  console.log("Shuffled images:", shuffledImages);
 }
 
-
-// Debugging helpers
-console.log("Selected images:", selectedImages);
-console.log("Shuffled images:", shuffledImages);
+setUpGame();
 
