@@ -62,10 +62,14 @@ function showStartScreen() {
     <h1>Memory Card Game</h1>
     <p>Click on the cards to find matching pairs</p>
     <button id="startGame">Start Game</button>
+    <input type="text" id="playerName" placeholder="Enter your name" />
   `;
 
   const startButton = document.getElementById("startGame");
   startButton.addEventListener("click", () => {
+    // save name to local storage
+    const playerName = document.getElementById("playerName").value;
+    localStorage.setItem("playerName", playerName);
     setUpGame();
   });
 }
@@ -78,6 +82,19 @@ function setUpGame() {
   const totalImageCount = 18; // Total number of images in the cardimages folder
   const uniqueImageCount = 8; // Number of unique images required for the board
   const cardFolder = "cardimages/";
+
+  // clock
+  let time = 0;
+  const timerElement = document.getElementById("timerElement");
+  const timer = setInterval(() => {
+    time++;
+    // should be in the format of 00:00
+    const minutes = Math.floor(time / 60).toString().padStart(2, "0");
+    const seconds = (time % 60).toString().padStart(2, "0");
+    timerElement.textContent = `${minutes}:${seconds}`;
+  }, 1000);
+
+  timerElement.classList.remove("hidden");
 
   // Clear the start screen
   const startScreen = document.getElementById("startScreen");
