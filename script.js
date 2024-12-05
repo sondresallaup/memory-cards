@@ -62,7 +62,7 @@ showStartScreen();
 
 function setUpGame() {
   // Configuration
-  const totalImageCount = 11; // Total number of images in the cardimages folder
+  const totalImageCount = 18; // Total number of images in the cardimages folder
   const uniqueImageCount = 8; // Number of unique images required for the board
   const cardFolder = "cardimages/";
   const gameBoard = document.getElementById("gameBoard");
