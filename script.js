@@ -243,13 +243,17 @@ function setUpGame() {
       const highscoreList = document.createElement("div");
       highscoreList.classList.add("highscore-list");
 
+      const title = document.createElement("h2");
+      title.textContent = "Highscores";
+      highscoreList.appendChild(title);
+
       highscores.forEach((score, index) => {
         const scoreItem = document.createElement("div");
         scoreItem.classList.add("score-item");
         scoreItem.innerHTML = `
           <span class="position">${index + 1}</span>
           <span class="name">${score.name}</span>
-          <span class="score">${score.score}</span>
+          <span class="score">${secondsToString(score.score)}</span>
         `;
         highscoreList.appendChild(scoreItem);
       });
@@ -257,6 +261,12 @@ function setUpGame() {
       document.body.appendChild(highscoreList);
     } catch (e) {
       console.error("Error retrieving documents: ", e);
+    }
+
+    function secondsToString(time) {
+      const minutes = Math.floor(time / 60).toString().padStart(2, "0");
+      const seconds = (time % 60).toString().padStart(2, "0");
+      return `${minutes}:${seconds}`;
     }
   }
 
