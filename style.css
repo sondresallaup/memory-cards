@@ -197,7 +197,7 @@ body > .content {
   overflow-y: auto;
   border-top: 1px solid;
   border-bottom: 1px solid;
-  padding: 10px 0;
+  padding: 10px;
 }
 
 .score-item {

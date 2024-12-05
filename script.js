@@ -94,6 +94,7 @@ function setUpGame() {
   const gameBoard = document.getElementById("gameBoard");
   gameBoard.innerHTML = ""; // Clear the game board
   gameBoard.style.display = "grid";
+  gameBoard.style.filter = "none";
 
   // Generate an array of unique random image indices
   function getRandomImageIndices(total, needed) {
@@ -212,6 +213,9 @@ function setUpGame() {
 
 
 async function showHighscores(gameCompleted) {
+  const gameBoard = document.getElementById("gameBoard");
+  gameBoard.style.filter = "blur(5px)";
+
   try {
     const querySnapshot = await getDocs(collection(db, "highscores"));
 
