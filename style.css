@@ -177,8 +177,6 @@ body > .content {
   padding: 20px;
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  overflow-y: auto;
   width: 400px;
   max-height: calc(100vh - 260px);
   max-width: calc(100% - 40px);
@@ -189,8 +187,17 @@ body > .content {
   margin: 0;
   font-size: 30px;
   font-weight: 700;
-  border-bottom: 1px solid;
   padding-bottom: 10px;
+}
+
+.highscore-list .scrollable-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  overflow-y: auto;
+  border-top: 1px solid;
+  border-bottom: 1px solid;
+  padding: 10px 0;
 }
 
 .score-item {
@@ -198,6 +205,7 @@ body > .content {
   justify-content: space-between;
   font-size: 22px;
 }
+
 
 .restart-button {
   margin-top: 20px;
