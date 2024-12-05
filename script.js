@@ -212,62 +212,62 @@ function setUpGame() {
     }
   }
 
-  async function showHighscores() {
-    try {
-      const querySnapshot = await getDocs(collection(db, "highscores"));
-
-      const highscores = [];
-
-      querySnapshot.forEach((doc) => {
-        console.log(`${doc.id} =>`, doc.data());
-        highscores.push(doc.data());
-      });
-
-      // Sort highscores
-      highscores.sort((a, b) => a.score - b.score);
-
-      const highscoreList = document.createElement("div");
-      highscoreList.classList.add("highscore-list");
-
-      const title = document.createElement("h2");
-      title.textContent = "Høgskår";
-      highscoreList.appendChild(title);
-
-      highscores.forEach((score, index) => {
-        const scoreItem = document.createElement("div");
-        scoreItem.classList.add("score-item");
-        scoreItem.innerHTML = `
-          <span class="position">${index + 1}</span>
-          <span class="name">${score.name}</span>
-          <span class="score">${secondsToString(score.score)}</span>
-        `;
-        highscoreList.appendChild(scoreItem);
-      });
-
-      document.body.appendChild(highscoreList);
-
-      const restartButton = document.createElement("button");
-      restartButton.classList.add("restart-button");
-      restartButton.textContent = "Start på nytt";
-      restartButton.addEventListener("click", () => {
-        highscoreList.remove();
-        setUpGame();
-      });
-
-      highscoreList.appendChild(restartButton);
-    } catch (e) {
-      console.error("Error retrieving documents: ", e);
-    }
-
-    function secondsToString(time) {
-      const minutes = Math.floor(time / 60).toString().padStart(2, "0");
-      const seconds = (time % 60).toString().padStart(2, "0");
-      return `${minutes}:${seconds}`;
-    }
-  }
-
   // Debugging helpers
   console.log("Selected images:", selectedImages);
   console.log("Shuffled images:", shuffledImages);
 }
 
+
+async function showHighscores() {
+  try {
+    const querySnapshot = await getDocs(collection(db, "highscores"));
+
+    const highscores = [];
+
+    querySnapshot.forEach((doc) => {
+      console.log(`${doc.id} =>`, doc.data());
+      highscores.push(doc.data());
+    });
+
+    // Sort highscores
+    highscores.sort((a, b) => a.score - b.score);
+
+    const highscoreList = document.createElement("div");
+    highscoreList.classList.add("highscore-list");
+
+    const title = document.createElement("h2");
+    title.textContent = "Høgskår";
+    highscoreList.appendChild(title);
+
+    highscores.forEach((score, index) => {
+      const scoreItem = document.createElement("div");
+      scoreItem.classList.add("score-item");
+      scoreItem.innerHTML = `
+        <span class="position">${index + 1}</span>
+        <span class="name">${score.name}</span>
+        <span class="score">${secondsToString(score.score)}</span>
+      `;
+      highscoreList.appendChild(scoreItem);
+    });
+
+    document.body.appendChild(highscoreList);
+
+    const restartButton = document.createElement("button");
+    restartButton.classList.add("restart-button");
+    restartButton.textContent = "Start på nytt";
+    restartButton.addEventListener("click", () => {
+      highscoreList.remove();
+      setUpGame();
+    });
+
+    highscoreList.appendChild(restartButton);
+  } catch (e) {
+    console.error("Error retrieving documents: ", e);
+  }
+
+  function secondsToString(time) {
+    const minutes = Math.floor(time / 60).toString().padStart(2, "0");
+    const seconds = (time % 60).toString().padStart(2, "0");
+    return `${minutes}:${seconds}`;
+  }
+}
