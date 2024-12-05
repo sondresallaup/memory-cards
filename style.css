@@ -1,5 +1,6 @@
 body {
   background-image: url(https://static.inkrement.no/cdn/matte12/themes/christmas_v2/background2.jpg);
+  margin: 0;
 }
 
 body > .content {
@@ -13,7 +14,7 @@ body > .content {
 #gameBoard {
   display: grid;
   grid-template-columns: repeat(4, 1fr); /* Adjust for your layout */
-  gap: 10px;
+  gap: 1vmin;
   justify-content: center;
 }
 
@@ -28,12 +29,7 @@ body > .content {
   height: 20vmin;
   position: relative;
   perspective: 1000px; /* Enable 3D perspective for flip animation */
-  transition: box-shadow 0.2s ease-in-out;
   border-radius: 0.8vmin;
-}
-
-.card:hover {
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
 
 .card-inner {
