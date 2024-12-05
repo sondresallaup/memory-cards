@@ -69,4 +69,8 @@ body > .content {
 .card .back {
   background-color: #ccc; /* Style the back of the card */
   transform: rotateY(180deg); /* Back side facing down initially */
+  background-image: url("/assets/inkrement-logo.svg");
+  background-size: 100px;
+  background-repeat: no-repeat;
+  background-position: center;
 }
