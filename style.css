@@ -21,6 +21,11 @@ body > .content {
   right: 3vmin;
   transition: opacity 0.3s ease-in-out;
   opacity: 1;
+  font-size: max(5vmin, 32px);
+  color: white;
+  background-color: #709efe;
+  padding: 0px 10px;
+  border-radius: 4px;
 }
 
 #timerElement.hidden {

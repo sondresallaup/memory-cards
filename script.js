@@ -188,6 +188,7 @@ function setUpGame() {
           console.log("Board completed! 🎉");
           setTimeout(() => {
             alert("Congratulations! You've completed the game!");
+            clearInterval(timer);
           }, 500);
         }
 
