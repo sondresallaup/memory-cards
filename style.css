@@ -37,10 +37,30 @@ body > .content {
   flex-direction: column;
   padding: 20px;
   text-align: center;
+  align-items: center;
+  gap: 20px;
 }
 #startScreen h1 {
   text-align: center;
   font-size: max(9vmin, 30px);
+  margin: 2rem;
+}
+#startScreen input {
+  max-width: 500px;
+  font-size: 20px;
+  font-family: "Sour Gummy", sans-serif;
+  border-radius: 10px;
+  border: 2px solid black;
+  padding: 4px 10px;
+}
+
+#startScreen button {
+  max-width: 500px;
+  font-size: 20px;
+  font-family: "Sour Gummy", sans-serif;
+  border-radius: 10px;
+  border: 2px solid black;
+  padding: 4px 10px;
 }
 
 /* Game board */
@@ -125,6 +145,15 @@ body > .content {
   width: 400px;
   max-height: calc(100vh - 40px);
   max-width: calc(100% - 40px);
+}
+
+.highscore-list h2 {
+  text-align: center;
+  margin: 0;
+  font-size: 30px;
+  font-weight: 700;
+  border-bottom: 1px solid;
+  padding-bottom: 10px;
 }
 
 .score-item {
