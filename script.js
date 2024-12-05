@@ -33,7 +33,7 @@ function showStartScreen() {
     <h1>Ada og Alberts adventsminne</h1>
     <input type="text" id="playerName" placeholder="Skriv namnet ditt" />
     <button id="startGame" disabled>Start spelet</button>
-    <button id="seeHighScore">Se høgskår</button>
+    <button id="seeHighScore">Sjå høgskår</button>
     <span>På nynorsk til ære for kalendermeisteren🎅</span>
   `;
 
