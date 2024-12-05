@@ -185,3 +185,19 @@ body > .content {
   justify-content: space-between;
   font-size: 22px;
 }
+
+
+@media(max-width: 500px) {
+  body > .content {
+    justify-content: flex-end;
+  }
+  #gameBoard {
+    grid-template-columns: repeat(3, 1fr);
+    padding-bottom: 10px;
+  }
+
+  .card {
+    width: 26vmin;
+    height: 26vmin;
+  }
+}
