@@ -95,7 +95,7 @@ body > .content {
 }
 
 
-#startScreen button:disabled {
+#startScreen #startGame:disabled {
   background-color: #b7b7b7;
   cursor: not-allowed;
 }
