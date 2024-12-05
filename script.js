@@ -104,9 +104,11 @@ function setUpGame() {
   // Clear the start screen
   const startScreen = document.getElementById("startScreen");
   startScreen.innerHTML = "";
+  startScreen.style.display = "none";
 
   const gameBoard = document.getElementById("gameBoard");
   gameBoard.innerHTML = ""; // Clear the game board
+  gameBoard.style.display = "grid";
 
   // Generate an array of unique random image indices
   function getRandomImageIndices(total, needed) {
