@@ -200,4 +200,9 @@ body > .content {
     width: 26vmin;
     height: 26vmin;
   }
+
+  #timerElement {
+    top: unset;
+    bottom: 3vmin;
+  }
 }
