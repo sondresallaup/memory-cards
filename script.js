@@ -64,8 +64,6 @@ function showStartScreen() {
     <button id="startGame">Start Game</button>
   `;
 
-  gameBoard.appendChild(startScreen);
-
   const startButton = document.getElementById("startGame");
   startButton.addEventListener("click", () => {
     setUpGame();
