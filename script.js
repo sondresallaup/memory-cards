@@ -57,7 +57,7 @@ function showStartScreen() {
   const gameBoard = document.getElementById("gameBoard");
   gameBoard.innerHTML = ""; // Clear the game board
 
-  const startScreen = document.getElementById("start-screen");
+  const startScreen = document.getElementById("startScreen");
   startScreen.innerHTML = `
     <h1>Memory Card Game</h1>
     <p>Click on the cards to find matching pairs</p>
