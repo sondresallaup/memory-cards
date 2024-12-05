@@ -49,6 +49,13 @@ function showStartScreen() {
     localStorage.setItem("playerName", playerName);
     setUpGame();
   });
+
+  // enable enter key to start game if input is focused
+  playerNameInput.addEventListener("keydown", (event) => {
+    if (event.key === "Enter") {
+      startButton.click();
+    }
+  });
 }
 
 showStartScreen();
