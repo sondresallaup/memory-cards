@@ -61,9 +61,15 @@ function showStartScreen() {
   startScreen.innerHTML = `
     <h1>Memory Card Game</h1>
     <p>Click on the cards to find matching pairs</p>
-    <button id="startGame">Start Game</button>
     <input type="text" id="playerName" placeholder="Enter your name" />
+    <button id="startGame" disabled>Start Game</button>
   `;
+
+  const playerNameInput = document.getElementById("playerName");
+  playerNameInput.addEventListener("input", () => {
+    const startButton = document.getElementById("startGame");
+    startButton.disabled = !playerNameInput.value;
+  });
 
   const startButton = document.getElementById("startGame");
   startButton.addEventListener("click", () => {

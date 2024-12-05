@@ -1,6 +1,11 @@
 body {
   background-image: url(https://static.inkrement.no/cdn/matte12/themes/christmas_v2/background2.jpg);
   margin: 0;
+  font-family: "Sour Gummy", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+  font-variation-settings:
+    "wdth" 100;
 }
 
 body > .content {
@@ -8,6 +13,18 @@ body > .content {
     align-items: center;
     justify-content: center;
     min-height: 100vh;
+}
+
+#timerElement {
+  position: fixed;
+  top: 3vmin;
+  right: 3vmin;
+  transition: opacity 0.3s ease-in-out;
+  opacity: 1;
+}
+
+#timerElement.hidden {
+  opacity: 0;
 }
 
 /* Game board */
