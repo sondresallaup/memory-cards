@@ -29,9 +29,10 @@ function showStartScreen() {
 
   const startScreen = document.getElementById("startScreen");
   startScreen.innerHTML = `
-    <h1>Ada og Alberts adventsmemory</h1>
-    <input type="text" id="playerName" placeholder="Skriv navnet ditt" />
-    <button id="startGame" disabled>Start spillet</button>
+    <span class="presents">Sondre Sallaup presenterer</span>
+    <h1>Ada og Alberts adventsminne</h1>
+    <input type="text" id="playerName" placeholder="Skriv namnet ditt" />
+    <button id="startGame" disabled>Start spelet</button>
   `;
 
   const playerNameInput = document.getElementById("playerName");
@@ -215,7 +216,7 @@ function setUpGame() {
       highscoreList.classList.add("highscore-list");
 
       const title = document.createElement("h2");
-      title.textContent = "Highscores";
+      title.textContent = "Høgskår";
       highscoreList.appendChild(title);
 
       highscores.forEach((score, index) => {
