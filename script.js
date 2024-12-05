@@ -59,10 +59,9 @@ function showStartScreen() {
 
   const startScreen = document.getElementById("startScreen");
   startScreen.innerHTML = `
-    <h1>Memory Card Game</h1>
-    <p>Click on the cards to find matching pairs</p>
-    <input type="text" id="playerName" placeholder="Enter your name" />
-    <button id="startGame" disabled>Start Game</button>
+    <h1>Ada og Alberts adventsmemory</h1>
+    <input type="text" id="playerName" placeholder="Skriv navnet ditt" />
+    <button id="startGame" disabled>Start spillet</button>
   `;
 
   const playerNameInput = document.getElementById("playerName");

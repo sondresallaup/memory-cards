@@ -32,6 +32,17 @@ body > .content {
   opacity: 0;
 }
 
+#startScreen {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  text-align: center;
+}
+#startScreen h1 {
+  text-align: center;
+  font-size: max(9vmin, 30px);
+}
+
 /* Game board */
 #gameBoard {
   display: grid;
