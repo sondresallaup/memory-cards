@@ -82,7 +82,7 @@ function setUpGame() {
   const cardFolder = "cardimages/";
 
   // Clear the start screen
-  const startScreen = document.getElementById("start-screen");
+  const startScreen = document.getElementById("startScreen");
   startScreen.innerHTML = "";
 
   const gameBoard = document.getElementById("gameBoard");
