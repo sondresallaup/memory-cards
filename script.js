@@ -53,6 +53,12 @@ async function getHighscores() {
 // Test the function
 // getHighscores();
 
+function showStartScreen() {
+  setUpGame();
+}
+
+showStartScreen();
+
 
 function setUpGame() {
   // Configuration
@@ -166,6 +172,4 @@ function setUpGame() {
   console.log("Selected images:", selectedImages);
   console.log("Shuffled images:", shuffledImages);
 }
-
-setUpGame();
 
