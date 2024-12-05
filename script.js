@@ -243,7 +243,7 @@ async function showHighscores(gameCompleted) {
         <span class="name">${score.name}</span>
         <span class="score">${secondsToString(score.score)}</span>
       `;
-      highscoreList.appendChild(scoreItem);
+      scrollableList.appendChild(scoreItem);
     });
 
     document.body.appendChild(highscoreList);
