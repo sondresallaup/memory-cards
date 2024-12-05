@@ -60,7 +60,7 @@ function showStartScreen() {
 
   const seeHighScoreButton = document.getElementById("seeHighScore");
   seeHighScoreButton.addEventListener("click", () => {
-    showHighscores();
+    showHighscores(false);
   });
 }
 
@@ -166,12 +166,10 @@ function setUpGame() {
       const secondImage = secondCard.querySelector(".front img").src;
 
       if (firstImage === secondImage) {
-        console.log("Match found!");
         matchedPairs++;
 
         // Check if all pairs are matched
         if (matchedPairs === totalPairs) {
-          console.log("Board completed! 🎉");
           setTimeout(() => {
             gameCompleted();
             clearInterval(timer);
@@ -181,7 +179,6 @@ function setUpGame() {
         gameBoard.classList.remove("disabled");
         flippedCards = []; // Reset flipped cards
       } else {
-        console.log("No match!");
         setTimeout(() => {
           firstCard.classList.remove("flipped");
           secondCard.classList.remove("flipped");
@@ -206,26 +203,21 @@ function setUpGame() {
         score: playerScore,
         timestamp: new Date() // Optional: Add a timestamp for sorting
       });
-      showHighscores();
+      showHighscores(true);
     } catch (e) {
       console.error("Error adding document: ", e);
     }
   }
-
-  // Debugging helpers
-  console.log("Selected images:", selectedImages);
-  console.log("Shuffled images:", shuffledImages);
 }
 
 
-async function showHighscores() {
+async function showHighscores(gameCompleted) {
   try {
     const querySnapshot = await getDocs(collection(db, "highscores"));
 
     const highscores = [];
 
     querySnapshot.forEach((doc) => {
-      console.log(`${doc.id} =>`, doc.data());
       highscores.push(doc.data());
     });
 
@@ -238,6 +230,10 @@ async function showHighscores() {
     const title = document.createElement("h2");
     title.textContent = "Høgskår";
     highscoreList.appendChild(title);
+    
+    const scrollableList = document.createElement("div");
+    scrollableList.classList.add("scrollable-list");
+    highscoreList.appendChild(scrollableList);
 
     highscores.forEach((score, index) => {
       const scoreItem = document.createElement("div");
@@ -252,15 +248,28 @@ async function showHighscores() {
 
     document.body.appendChild(highscoreList);
 
-    const restartButton = document.createElement("button");
-    restartButton.classList.add("restart-button");
-    restartButton.textContent = "Start på nytt";
-    restartButton.addEventListener("click", () => {
-      highscoreList.remove();
-      setUpGame();
-    });
+    if(gameCompleted) {
+      const restartButton = document.createElement("button");
+      restartButton.classList.add("restart-button");
+      restartButton.textContent = "Start på nytt";
+      restartButton.addEventListener("click", () => {
+        highscoreList.remove();
+        setUpGame();
+      });
+  
+      highscoreList.appendChild(restartButton);
+    }
+    else {
+      const backButton = document.createElement("button");
+      backButton.classList.add("restart-button");
+      backButton.textContent = "Tilbake";
+      backButton.addEventListener("click", () => {
+        highscoreList.remove();
+      });
+  
+      highscoreList.appendChild(backButton);
+    }
 
-    highscoreList.appendChild(restartButton);
   } catch (e) {
     console.error("Error retrieving documents: ", e);
   }
