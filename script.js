@@ -29,10 +29,11 @@ function showStartScreen() {
 
   const startScreen = document.getElementById("startScreen");
   startScreen.innerHTML = `
-    <span class="presents">Sondre Sallaup presenterer</span>
+    <span class="presents">Sondre Sallaup🎄 presenterer</span>
     <h1>Ada og Alberts adventsminne</h1>
     <input type="text" id="playerName" placeholder="Skriv namnet ditt" />
     <button id="startGame" disabled>Start spelet</button>
+    <span>På nynorsk til ære for kalendermeisteren🎅</span>
   `;
 
   const playerNameInput = document.getElementById("playerName");
