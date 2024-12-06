@@ -162,7 +162,7 @@ body > .content {
 .card .back {
   background-color: #e9ecf1; /* Style the back of the card */
   transform: rotateY(180deg); /* Back side facing down initially */
-  background-image: url("/memory-cards/assets/inkrement-logo.svg");
+  background-image: url("https://campus.inkrement.no/images/EducationYoung/illustrations/ada-albert-logo.png");
   background-size: 5vmin;
   background-repeat: no-repeat;
   background-position: center;
